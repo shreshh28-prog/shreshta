@@ -1,2 +1,3 @@
 # shreshta
-python
+sic coding and programming course
+
