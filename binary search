@@ -1,1 +1,14 @@
-
+eles= [1,2,3,4,5]
+def binary_search(sele,eles):
+    low = 0
+    high = len(eles) - 1
+    while low <= high:
+        mid = (low + high) // 2
+        if eles[mid] == sele:
+            return mid
+        elif eles[mid] < sele:
+            low = mid + 1
+        else:
+            high = mid - 1
+    return -1
+print('position of the search element is',binary_search(3,eles))
