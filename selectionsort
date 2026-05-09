@@ -1,0 +1,18 @@
+list1 = []
+size= int(input('enter size of the list'))
+for k in range(size):
+    element = int(input('enter the element'))
+    list1.append(element)
+
+
+def selectionSort(list1):
+    for i in range(size):
+        temp = i
+        for j in range(i+1, size)):
+            if list1[j] < list1[temp]:
+                temp = j
+        list1[i], list1[temp] = list1[temp], list1[i]
+    return list1
+
+
+print('your sorted list is:',selectionSort(list1)) 
