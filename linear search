@@ -1,1 +1,8 @@
+def linear_searh(sele,eles):
+    for i in range(len(eles)):
+        if sele == eles[i]:
+            return i
+    return -1
+if __name__ == "__main__":    eles = [1,2,3,4,5]
+print('position of the search element is',linear_searh(3,eles))   
 
