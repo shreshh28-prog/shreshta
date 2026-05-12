@@ -1,0 +1,24 @@
+lst = []
+size = int(input("Enter the size of the list: "))
+for i in range(size):
+    element = input("Enter element {}: ".format(i + 1))
+    lst.append(element)
+    
+def partition_list(lst1, low, high):
+    pivot = lst1[high]
+    i = low - 1
+    for j in range(low, high):
+        if lst1[j] <= pivot:
+            i = i+1
+            lst1[i], lst1[j] = lst1[j], lst1[i]
+    lst1[i+1], lst1[high] = lst1[high], lst1[i+1]
+    return i+1
+
+def quick_sort(lst1, low, high):
+    if low < high:
+        pi = partition_list(lst1, low, high)
+        quick_sort(lst1, low, pi-1)
+        quick_sort(lst1, pi+1, high)
+    return lst1
+
+print('sorted array is:', quick_sort(lst, 0, size - 1))
