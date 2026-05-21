@@ -53,6 +53,34 @@ linear linked list
   1. generalization - (inheritance) is-a relationship
   2. association - has-a or part-of relationship
         a. composition and b. aggreggation - weak and strong association respectively.
-       
+
+
+pced certificate, pcap certificate from python insitute - around 14000 to 17000 
+just like nptel course(also helpful)
+linuxfoundation.org
+
+
+
+ge,simons,tata electronics, ltts, isro - top electronics placements
+pre requisite - what subject u want to do, in deppth knowledge and confidence in the subject
+sem 1 -  s1   s2   s3   s4   s5    s6 
+sem 2 -  s1   s2   s3   s4   s5    s6 
+sem 3 -  s1   s2   s3   s4   s5    s6         write all subjects here and select fav subject and see if theres connectung subject in next sem
+sem 4 -  s1   s2   s3   s4   s5    s6         take 2 or more paths and study those subjects for knowledge and remain can be ignored
+sem 5 -  s1   s2   s3   s4   s5    s6         can get clarity on what career path should be chosen 
+sem 6 -  s1   s2   s3   s4   s5    s6 
+sem 7 -  s1   s2   s3   s4   s5    s6  
+sem 8 -  s1   s2   s3   s4   s5    s6    
+
+
+
+
+
+operations or codes to try on trees
+1. check if tree is empty
+2. check if tree has only the root and to be deleted
+3. check if the node being deleted is
+4. inorder, preorder,postorder traversals - instance method
+5.        
 
 
