@@ -1,0 +1,128 @@
+# Binary Search Tree implementation with menu-driven interface
+
+class Node:
+    """A node in the Binary Search Tree."""
+    def __init__(self, key):
+        self.key = key
+        self.left = None
+        self.right = None
+
+
+class BST:
+    """Binary Search Tree with insertion, deletion, search, and sort."""
+    def __init__(self):
+        self.root = None
+
+    def insert(self, root, key):
+        """Insert a new key into the BST."""
+        if root is None:
+            return Node(key)
+        if key < root.key:
+            root.left = self.insert(root.left, key)
+        elif key > root.key:
+            root.right = self.insert(root.right, key)
+        else:
+            print(f"Key {key} already exists. Skipping insertion.")
+        return root
+
+    def search(self, root, key):
+        """Search for a key in the BST."""
+        if root is None:
+            return None
+        if key == root.key:
+            return root
+        elif key < root.key:
+            return self.search(root.left, key)
+        else:
+            return self.search(root.right, key)
+
+    def find_min(self, root):
+        """Find the node with the minimum key."""
+        current = root
+        while current and current.left:
+            current = current.left
+        return current
+
+    def delete(self, root, key):
+        """Delete a key from the BST."""
+        if root is None:
+            print(f"Key {key} not found.")
+            return root
+        if key < root.key:
+            root.left = self.delete(root.left, key)
+        elif key > root.key:
+            root.right = self.delete(root.right, key)
+        else:
+            # Node with only one child or no child
+            if root.left is None:
+                return root.right
+            elif root.right is None:
+                return root.left
+            # Node with two children: Get inorder successor
+            temp = self.find_min(root.right)
+            root.key = temp.key
+            root.right = self.delete(root.right, temp.key)
+        return root
+
+    def inorder(self, root):
+        """In-order traversal (sorted order)."""
+        return self.inorder(root.left) + [root.key] + self.inorder(root.right) if root else []
+
+
+# Menu-driven program
+def main():
+    bst = BST()
+
+    while True:
+        print("\n--- Binary Search Tree Menu ---")
+        print("1. Insert")
+        print("2. Delete")
+        print("3. Search")
+        print("4. Sort (In-order Traversal)")
+        print("5. Exit")
+
+        choice = input("Enter your choice (1-5): ").strip()
+
+        if choice == "1":
+            try:
+                key = int(input("Enter integer to insert: "))
+                bst.root = bst.insert(bst.root, key)
+                print(f"Inserted {key} successfully.")
+            except ValueError:
+                print("Invalid input. Please enter an integer.")
+
+        elif choice == "2":
+            try:
+                key = int(input("Enter integer to delete: "))
+                bst.root = bst.delete(bst.root, key)
+            except ValueError:
+                print("Invalid input. Please enter an integer.")
+
+        elif choice == "3":
+            try:
+                key = int(input("Enter integer to search: "))
+                node = bst.search(bst.root, key)
+                if node:
+                    print(f"Key {key} found in BST.")
+                else:
+                    print(f"Key {key} not found.")
+            except ValueError:
+                print("Invalid input. Please enter an integer.")
+
+        elif choice == "4":
+            sorted_list = bst.inorder(bst.root)
+            if sorted_list:
+                print("Sorted elements:", sorted_list)
+            else:
+                print("BST is empty.")
+
+        elif choice == "5":
+            print("Exiting program.")
+            break
+
+        else:
+            print("Invalid choice. Please enter a number between 1 and 5.")
+
+
+if __name__ == "__main__":
+    main()
