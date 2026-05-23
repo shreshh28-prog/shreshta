@@ -60,7 +60,6 @@ just like nptel course(also helpful)
 linuxfoundation.org
 
 
-
 ge,simons,tata electronics, ltts, isro - top electronics placements
 pre requisite - what subject u want to do, in deppth knowledge and confidence in the subject
 sem 1 -  s1   s2   s3   s4   s5    s6 
@@ -73,14 +72,13 @@ sem 7 -  s1   s2   s3   s4   s5    s6
 sem 8 -  s1   s2   s3   s4   s5    s6    
 
 
-
-
-
 operations or codes to try on trees
 1. check if tree is empty
 2. check if tree has only the root and to be deleted
 3. check if the node being deleted is
-4. inorder, preorder,postorder traversals - instance method
-5.        
+4. inorder, preorder,postorder traversals - instance method   
+
+
+to learn : exception handling
 
 
