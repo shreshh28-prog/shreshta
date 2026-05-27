@@ -81,4 +81,29 @@ operations or codes to try on trees
 
 to learn : exception handling
 
+PROJECT DETAILS:
+
+the mcq assesmment has say about 20-25 questions
+the questions may contain mcsr or mssr questions
+there are three categories of questions, easy intermediate, hard
+generate the "reusult analysis" pdf file for each of the student and one pdf for the examiner with summarty of results
+
+student copy:
+numbr of questions asked
+number of correct answerst
+percentage of correctness
+grade depending on the percentage
+time taken for the exma
+longest time spent on a question (qno. and time)
+longest time spent on a questions(qno. and time)
+shortest time spent on a question(qno. and time)
+average time taken on beginner questions, intermediate questions, hard questions
+percentage of score for beginner level, intermediate level, hard level.
+subject student is good at 
+subject student should improve on
+
+FIRST excel sheet for questions
+and another excel sheet for answwers for these questions and these 2 are linked
+
+
 
