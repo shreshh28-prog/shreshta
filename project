@@ -2,11 +2,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from fpdf import FPDF
 
-# Load questions and answers
 questions = pd.read_excel("questions.xlsx")
 answers = pd.read_excel("answers.xlsx")
 
-# Merge for analysis
 data = answers.merge(questions, on="question_id")
 
 def analyze_student(student_id):
@@ -16,7 +14,6 @@ def analyze_student(student_id):
     correct_answers = student_data['is_correct'].sum()
     percentage = (correct_answers / num_questions) * 100
     
-    # Grade logic
     if percentage >= 85:
         grade = "A"
     elif percentage >= 70:
@@ -37,7 +34,7 @@ def analyze_student(student_id):
     best_subject = subject_scores.idxmax()
     weak_subject = subject_scores.idxmin()
     
-    # PDF Report
+
     pdf = FPDF()
     pdf.add_page()
     pdf.set_font("Arial", size=12)
@@ -56,7 +53,7 @@ def analyze_student(student_id):
     
     pdf.output(f"student_{student_id}_analysis.pdf")
 
-# Examiner Summary
+
 def examiner_summary():
     summary = data.groupby('student_id')['is_correct'].mean()
     avg_score = summary.mean() * 100
@@ -72,7 +69,7 @@ def examiner_summary():
     
     pdf.output("examiner_summary.pdf")
 
-# Run for all students
+
 for student_id in data['student_id'].unique():
     analyze_student(student_id)
 
