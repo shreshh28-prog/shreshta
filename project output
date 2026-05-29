@@ -1,0 +1,54 @@
+import pandas as pd
+from fpdf import FPDF
+
+questions = pd.read_excel("questions.xlsx")
+answers = pd.read_excel("answers.xlsx")
+data = answers.merge(questions, on="question_id")
+
+def analyze_student(student_id):
+    student_data = data[data['student_id'] == student_id]
+    num_questions = len(student_data)
+    correct_answers = student_data['is_correct'].sum()
+    percentage = (correct_answers / num_questions) * 100
+    grade = "A" if percentage >= 85 else "B" if percentage >= 70 else "C" if percentage >= 50 else "D"
+    total_time = student_data['time_taken'].sum()
+    longest = student_data.loc[student_data['time_taken'].idxmax()]
+    shortest = student_data.loc[student_data['time_taken'].idxmin()]
+    avg_times = student_data.groupby('category')['time_taken'].mean().to_dict()
+    category_scores = student_data.groupby('category')['is_correct'].mean().to_dict()
+    subject_scores = student_data.groupby('subject')['is_correct'].mean()
+    best_subject = subject_scores.idxmax()
+    weak_subject = subject_scores.idxmin()
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font("Arial", size=12)
+    pdf.cell(200, 10, f"Result Analysis - Student {student_id}", ln=True)
+    pdf.cell(200, 10, f"Questions Attempted: {num_questions}", ln=True)
+    pdf.cell(200, 10, f"Correct Answers: {correct_answers}", ln=True)
+    pdf.cell(200, 10, f"Percentage: {percentage:.2f}%", ln=True)
+    pdf.cell(200, 10, f"Grade: {grade}", ln=True)
+    pdf.cell(200, 10, f"Total Time: {total_time} sec", ln=True)
+    pdf.cell(200, 10, f"Longest Time: Q{longest['question_id']} - {longest['time_taken']} sec", ln=True)
+    pdf.cell(200, 10, f"Shortest Time: Q{shortest['question_id']} - {shortest['time_taken']} sec", ln=True)
+    pdf.cell(200, 10, f"Avg Times: {avg_times}", ln=True)
+    pdf.cell(200, 10, f"Category Scores: {category_scores}", ln=True)
+    pdf.cell(200, 10, f"Best Subject: {best_subject}", ln=True)
+    pdf.cell(200, 10, f"Needs Improvement: {weak_subject}", ln=True)
+    pdf.output(f"student_{student_id}_analysis.pdf")
+
+def examiner_summary():
+    summary = data.groupby('student_id')['is_correct'].mean()
+    avg_score = summary.mean() * 100
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font("Arial", size=12)
+    pdf.cell(200, 10, "Examiner Summary Report", ln=True)
+    pdf.cell(200, 10, f"Average Score: {avg_score:.2f}%", ln=True)
+    grade_distribution = summary.apply(lambda x: "A" if x>=0.85 else "B" if x>=0.70 else "C" if x>=0.50 else "D")
+    pdf.cell(200, 10, f"Grade Distribution: {grade_distribution.value_counts().to_dict()}", ln=True)
+    pdf.output("examiner_summary.pdf")
+
+for student_id in data['student_id'].unique():
+    analyze_student(student_id)
+
+examiner_summary()
